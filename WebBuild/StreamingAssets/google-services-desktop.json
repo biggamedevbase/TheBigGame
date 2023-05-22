@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "508623015142",
+    "project_id": "big-game-872ed",
+    "storage_bucket": "big-game-872ed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:508623015142:android:4395e0f9be1729db667f27",
+        "android_client_info": {
+          "package_name": "com.biggame.biggame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "508623015142-n00061h74qttulgcv3655n89r4hgq0t0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCX08ZG5dIrp_CYfJoDRQ3G_zPk5zW7Qhc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "508623015142-n00061h74qttulgcv3655n89r4hgq0t0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

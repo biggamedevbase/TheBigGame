@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+<<<<<<< HEAD
+guid: f292e7e117e973449a3acc2f617b4b0b
+=======
+<<<<<<<< HEAD:Assets/StreamingAssets.meta
+<<<<<<< HEAD
+guid: fa1f050f391ebec45b9f9b7065f35709
+=======
+guid: 79ea8ff619cc05944933b71c4e195c85
+>>>>>>> 629bae71c645d2482fca1fc9f59d0ad45954011d
+========
+guid: 2242daaac4e3f964faec52030c2c6a81
+>>>>>>>> f4b63989f71ffb7d23e1c47b2e33ec4658d70951:Assets/Plugins.meta
+>>>>>>> f4b63989f71ffb7d23e1c47b2e33ec4658d70951
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
