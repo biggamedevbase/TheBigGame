@@ -18,7 +18,7 @@ public class BasicInkExample : MonoBehaviour {
 	public TextMeshProUGUI displayNameText;
 	public Image portraitImg;
 	public Sprite[] characterPortraits;
-	
+	public Transform parentContainer;
 	void Awake() {
 		// Remove the default message
 		RemoveChildren();
@@ -40,6 +40,7 @@ public class BasicInkExample : MonoBehaviour {
 		RemoveChildren();
 
 		// Read all the content until we can't continue any more
+		int characterCount = 0;
 		while (story.canContinue) {
 			// Continue gets the next line of the story
 			string text = story.Continue();
@@ -47,6 +48,12 @@ public class BasicInkExample : MonoBehaviour {
 			text = text.Trim();
 			// Display the text on screen!
 			CreateContentView(text);
+			int characterCountLocal = text.ToCharArray().Length;
+			if (characterCountLocal > characterCount)
+			{
+				characterCount = text.ToCharArray().Length;
+			}
+			AdjectSpacingofContainer(characterCount);
 			
 		}
 
@@ -120,34 +127,50 @@ public class BasicInkExample : MonoBehaviour {
 
 	// Creates a textbox showing the the line of text
 	void CreateContentView (string text) {
-		Text storyText = Instantiate (textPrefab) as Text;
+		TextMeshProUGUI storyText = Instantiate (textPrefab) as TextMeshProUGUI;
 		storyText.text = text;
-		storyText.transform.SetParent (canvas.transform, false);
+		storyText.ForceMeshUpdate();
+		storyText.transform.SetParent (parentContainer, false);
 		HandleTags(story.currentTags);
 	}
+	private void AdjectSpacingofContainer(int characterLength)
+    {
+		if(characterLength < 100)
+        {
+			parentContainer.GetComponent<VerticalLayoutGroup>().spacing = 15;
+		}
+		else if(characterLength>100 && characterLength < 150)
+        {
+			parentContainer.GetComponent<VerticalLayoutGroup>().spacing = 40;
 
+		}
+		else if(characterLength > 150)
+        {
+			parentContainer.GetComponent<VerticalLayoutGroup>().spacing = 74;
+		}
+    }
 	// Creates a button showing the choice text
 	Button CreateChoiceView (string text) {
 		// Creates the button from a prefab
 		Button choice = Instantiate (buttonPrefab) as Button;
-		choice.transform.SetParent (canvas.transform, false);
-		
+		choice.transform.SetParent (parentContainer, false);
+
 		// Gets the text from the button prefab
-		Text choiceText = choice.GetComponentInChildren<Text> ();
+		TextMeshProUGUI choiceText = choice.GetComponentInChildren<TextMeshProUGUI> ();
 		choiceText.text = text;
 
 		// Make the button expand to fit the text
-		HorizontalLayoutGroup layoutGroup = choice.GetComponent <HorizontalLayoutGroup> ();
-		layoutGroup.childForceExpandHeight = false;
+		//HorizontalLayoutGroup layoutGroup = choice.GetComponent <HorizontalLayoutGroup> ();
+		//layoutGroup.childForceExpandHeight = false;
 
 		return choice;
 	}
 
 	// Destroys all the children of this gameobject (all the UI)
 	void RemoveChildren () {
-		int childCount = canvas.transform.childCount;
+		int childCount = parentContainer.childCount;
 		for (int i = childCount - 1; i >= 0; --i) {
-			GameObject.Destroy (canvas.transform.GetChild (i).gameObject);
+			GameObject.Destroy (parentContainer.GetChild(i).gameObject);
 		}
 	}
 
@@ -160,7 +183,7 @@ public class BasicInkExample : MonoBehaviour {
 
 	// UI Prefabs
 	[SerializeField]
-	private Text textPrefab = null;
+	private TextMeshProUGUI textPrefab = null;
 	[SerializeField]
 	private Button buttonPrefab = null;
 }
